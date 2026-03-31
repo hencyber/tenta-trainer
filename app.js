@@ -328,11 +328,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <tr><td>HITL</td><td>Human-in-the-loop: människa godkänner vid risk</td></tr>
                 <tr><td>Definition of Done</td><td>Tydliga kriterier för "färdigt"</td></tr>
                 <tr><td>Governance</td><td>Policy → beteende → logg → förbättring</td></tr>
-                <tr><td>Varians</td><td>Icke-deterministiskt beteende – köntrollera var det är tillåtet</td></tr>
-                <tr><td>Tokenisering</td><td>Text → subword-tokens → numeriska ID:n. Påverkar context window + köstnad</td></tr>
+                <tr><td>Varians</td><td>Icke-deterministiskt beteende – kontrollera var det är tillåtet</td></tr>
+                <tr><td>Tokenisering</td><td>Text → subword-tokens → numeriska ID:n. Påverkar context window + kostnad</td></tr>
                 <tr><td>RLHF</td><td>Reinforcement Learning from Human Feedback – människör rankar svar → modellen lär sig</td></tr>
                 <tr><td>Chain-of-Thought</td><td>Be modellen resonera steg-för-steg → bättre logik/matematik</td></tr>
-                <tr><td>Role confusion</td><td>Agent blandar roller (planner ködar, critic skriver om text)</td></tr>
+                <tr><td>Role confusion</td><td>Agent blandar roller (planner kodar, critic skriver om text)</td></tr>
                 <tr><td>Cascading errors</td><td>Tidigt fel förstärks i kedjan ("viskleken")</td></tr>
                 <tr><td>Gemensam ärendefil</td><td>Delad state (JSON/YAML) som agenter uppdaterar stegvis</td></tr>
             </table>
