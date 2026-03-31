@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="topic-num">Område ${index + 1}</div>
                 <div class="topic-title">${t.title}</div>
                 <div class="topic-desc">${t.desc}</div>
-                <span class="topic-tag tag-${t.level}">${t.level.toUpperCase()}</span>
+                <spån class="topic-tag tag-${t.level}">${t.level.toUpperCase()}</spån>
             </div>
         `).join('');
     }
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         container.innerHTML = `
             <h2>${t.title}</h2>
-            <span class="topic-tag tag-${t.level}" style="margin-bottom: 24px;">NIVÅ ${t.level.toUpperCase()}</span>
+            <spån class="topic-tag tag-${t.level}" style="margin-bottom: 24px;">NIVÅ ${t.level.toUpperCase()}</spån>
             
             <div class="theory-section">
                 <h3>📚 Teori</h3>
@@ -172,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = `
             <div class="quiz-card">
                 <div class="quiz-meta">
-                    <span class="quiz-badge" style="background:var(--accent-glow);color:var(--accent-light);">Fråga</span>
-                    <span class="quiz-counter">${state.quizIndex + 1} av ${state.currentQuiz.length}</span>
+                    <spån class="quiz-badge" style="background:var(--accent-glow);color:var(--accent-light);">Fråga</spån>
+                    <spån class="quiz-counter">${state.quizIndex + 1} av ${state.currentQuiz.length}</spån>
                 </div>
                 <div class="quiz-question">${q.question}</div>
                 <div class="quiz-options">
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="case-pick-icon">${icon}</div>
                     <h3>${c.title}</h3>
                     <p>${c.intro.substring(0, 120)}...</p>
-                    <span class="case-pick-count">${c.tasks.length} uppgifter</span>
+                    <spån class="case-pick-count">${c.tasks.length} uppgifter</spån>
                 </div>
             `;
         });
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <tr><th>Begrepp</th><th>Definition</th></tr>
                 <tr><td>Autoregressiv</td><td>Genererar en token i taget baserat på allt före</td></tr>
                 <tr><td>Context window</td><td>Modellens arbetsminne</td></tr>
-                <tr><td>Hallucination</td><td>Modellen hittar på trovärdiga men felaktiga saker</td></tr>
+                <tr><td>Hallucination</td><td>Modellen hittar på trovärdiga men felaktiga säker</td></tr>
                 <tr><td>Temperature</td><td>Låg = stabilt, hög = kreativt</td></tr>
                 <tr><td>RAG</td><td>Retrieval-Augmented Generation: hämta → infoga → generera</td></tr>
                 <tr><td>Embeddings</td><td>Text som vektor för semantisk sökning</td></tr>
