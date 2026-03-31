@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TentaTrainer – AI-strategi</title>
+    <meta name="description" content="Interaktiv tentaövning för kursen AI-förstärkt kunskapsstrategi och hybrida AI-team">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Nav -->
+        <nav id="navbar">
+            <div class="nav-brand">
+                <span class="nav-icon">🧠</span>
+                <span>TentaTrainer</span>
+            </div>
+            <div class="nav-links">
+                <button class="nav-btn active" data-view="home">Hem</button>
+                <button class="nav-btn" data-view="topics">Ämnen</button>
+                <button class="nav-btn" data-view="quiz">Quiz</button>
+                <button class="nav-btn" data-view="case">Case-övning</button>
+                <button class="nav-btn" data-view="cheatsheet">Snabbreferens</button>
+            </div>
+            <div class="nav-progress">
+                <div class="progress-ring">
+                    <svg viewBox="0 0 36 36">
+                        <path class="progress-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="progress-fill" id="progressRing" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="0, 100"/>
+                    </svg>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home View -->
+        <section id="view-home" class="view active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Tentaövning<br><span class="gradient-text">AI-strategi & Hybrida AI-team</span></h1>
+                    <p class="hero-sub">Täcker alla 13 kunskapsområden från kursen. Öva på teorifrågor, resonemang och case-lösning.</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <span class="stat-num" id="totalQuestions">0</span>
+                            <span class="stat-label">Frågor</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num" id="answeredQuestions">0</span>
+                            <span class="stat-label">Besvarade</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">13</span>
+                            <span class="stat-label">Ämnen</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">10</span>
+                            <span class="stat-label">Case</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="switchView('topics')">Börja plugga →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topics View -->
+        <section id="view-topics" class="view">
+            <div class="container">
+                <h2>13 Kunskapsområden</h2>
+                <p class="section-sub">Klicka på ett ämne för att se teori, nyckelbegrepp och övningsfrågor med facit.</p>
+                <div class="topics-grid" id="topicsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Topic Detail View -->
+        <section id="view-topic-detail" class="view">
+            <div class="container">
+                <button class="btn-back" onclick="switchView('topics')">← Tillbaka till ämnen</button>
+                <div id="topicContent"></div>
+            </div>
+        </section>
+
+        <!-- Quiz View -->
+        <section id="view-quiz" class="view">
+            <div class="container">
+                <h2>Quiz – Testa dig själv</h2>
+                <p class="section-sub">Slumpmässiga frågor från alla ämnen. Välj rätt svar och se förklaringar.</p>
+                <div id="quizArea"></div>
+            </div>
+        </section>
+
+        <!-- Case View -->
+        <section id="view-case" class="view">
+            <div class="container">
+                <h2>Case-övning</h2>
+                <p class="section-sub">Öva på att lösa ett case som det troligtvis ser ut på tentan. Varje del har exempelsvar/facit.</p>
+                <div id="caseArea"></div>
+            </div>
+        </section>
+
+        <!-- Cheatsheet View -->
+        <section id="view-cheatsheet" class="view">
+            <div class="container">
+                <h2>Snabbreferens</h2>
+                <p class="section-sub">Allt du behöver kunna på ett ställe.</p>
+                <div id="cheatsheetArea"></div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:false,theme:'dark',themeVariables:{primaryColor:'#4f8ef7',primaryTextColor:'#fff',primaryBorderColor:'#4f8ef7',lineColor:'#a78bfa',secondaryColor:'#f59e0b',tertiaryColor:'#10b981'}});</script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
