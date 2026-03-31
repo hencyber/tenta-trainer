@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><strong>Ostrukturerad input</strong> — Fri text (mejl, PDF:er, chat)</li>
                 <li><strong>Kräver tolkning</strong> — "Det beror på vad kunden menar"</li>
                 <li><strong>Många undantag</strong> — If/else klarar inte alla varianter</li>
-                <li><strong>Kvalitetsproblem</strong> — Inkönsekvent resultat mellan handläggare</li>
+                <li><strong>Kvalitetsproblem</strong> — Inkonsekvent resultat mellan handläggare</li>
             </ol>
             <p style="color:var(--text-dim);font-size:0.85rem;margin-top:12px;">❌ <strong>Använd INTE agent för:</strong> Rent regelbaserat (bokföring), lagkrav på determinism, enkel trigger→action (SMS vid statusändring).</p>
         </div>
