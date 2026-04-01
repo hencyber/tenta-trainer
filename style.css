@@ -909,3 +909,28 @@ h2 {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+.search-result-page {
+    display: inline-block;
+    background: var(--blue-dim);
+    color: var(--blue);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-left: 8px;
+    margin-bottom: 10px;
+}
+
+.search-result-link {
+    margin-top: 10px;
+    color: var(--accent-light);
+    font-size: 0.8rem;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.search-result-card:hover .search-result-link {
+    opacity: 1;
+}

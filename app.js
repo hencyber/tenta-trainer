@@ -471,20 +471,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const grouped = {};
         matches.forEach(m => {
             if (!grouped[m.lecture]) grouped[m.lecture] = [];
-            grouped[m.lecture].push(m.text);
+            grouped[m.lecture].push({ text: m.text, pdf: m.pdf, page: m.page });
         });
 
         let html = `<div class="search-count">Hittade <strong>${matches.length}</strong> träffar i <strong>${Object.keys(grouped).length}</strong> föreläsningar för "<strong>${query}</strong>"</div>`;
         
-        for (const [lecture, texts] of Object.entries(grouped)) {
-            texts.forEach(text => {
+        for (const [lecture, items] of Object.entries(grouped)) {
+            items.forEach(item => {
                 // Highlight all matched terms (including synonyms)
                 const allTermsPattern = searchTerms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
                 const regex = new RegExp(`(${allTermsPattern})`, 'gi');
-                const highlighted = text.replace(regex, '<mark>$1</mark>');
-                html += `<div class="search-result-card">
+                const highlighted = item.text.replace(regex, '<mark>$1</mark>');
+                const pdfLink = item.pdf ? `pdfs/${item.pdf}#page=${item.page}` : '';
+                html += `<div class="search-result-card" ${pdfLink ? `onclick="window.open('${pdfLink}','_blank')" style="cursor:pointer;"` : ''}>
                     <span class="search-result-lecture">${lecture}</span>
+                    ${item.page ? `<span class="search-result-page">📄 Sida ${item.page}</span>` : ''}
                     <div class="search-result-text">${highlighted}</div>
+                    ${pdfLink ? '<div class="search-result-link">Klicka för att öppna PDF →</div>' : ''}
                 </div>`;
             });
         }
