@@ -440,9 +440,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const matches = lectureData.filter(chunk => 
-            chunk.text.toLowerCase().includes(query)
-        );
+        // Synonym expansion - search for related terms too
+        const synonyms = {
+            'hitl': ['human-in-the-loop', 'human in the loop', 'människa i loopen'],
+            'human-in-the-loop': ['hitl'],
+            'rag': ['retrieval-augmented generation', 'retrieval augmented'],
+            'llm': ['large language model', 'språkmodell'],
+            'genai': ['generativ ai', 'generative ai'],
+            'cot': ['chain-of-thought', 'chain of thought', 'tankekedja'],
+        };
+        
+        const searchTerms = [query];
+        for (const [key, vals] of Object.entries(synonyms)) {
+            if (query === key || query === key.replace(/-/g, ' ')) {
+                searchTerms.push(...vals);
+            }
+        }
+
+        const matches = lectureData.filter(chunk => {
+            const lower = chunk.text.toLowerCase();
+            return searchTerms.some(term => lower.includes(term));
+        });
 
         if (matches.length === 0) {
             resultsDiv.innerHTML = `<div class="search-empty"><span class="empty-icon">🤷</span><p>Inga träffar för "<strong>${query}</strong>"</p><p style="margin-top:8px;font-size:0.85rem;">Prova ett annat sökord</p></div>`;
@@ -460,8 +478,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         for (const [lecture, texts] of Object.entries(grouped)) {
             texts.forEach(text => {
-                // Highlight matches
-                const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                // Highlight all matched terms (including synonyms)
+                const allTermsPattern = searchTerms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+                const regex = new RegExp(`(${allTermsPattern})`, 'gi');
                 const highlighted = text.replace(regex, '<mark>$1</mark>');
                 html += `<div class="search-result-card">
                     <span class="search-result-lecture">${lecture}</span>
