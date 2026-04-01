@@ -22,6 +22,7 @@
                 <button class="nav-btn" data-view="quiz">Quiz</button>
                 <button class="nav-btn" data-view="case">Case-övning</button>
                 <button class="nav-btn" data-view="cheatsheet">Snabbreferens</button>
+                <button class="nav-btn" data-view="search">🔍 Sök</button>
             </div>
             <div class="nav-progress">
                 <div class="progress-ring">
@@ -106,11 +107,25 @@
                 <div id="cheatsheetArea"></div>
             </div>
         </section>
+
+        <!-- Search View -->
+        <section id="view-search" class="view">
+            <div class="container">
+                <h2>🔍 Sök i föreläsningar</h2>
+                <p class="section-sub">Sök igenom alla 7 föreläsningar direkt. Skriv ett nyckelord eller begrepp.</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Sök t.ex. hallucinering, HITL, prompt chaining..." autocomplete="off">
+                    <button class="btn-primary" id="searchBtn" onclick="performSearch()">Sök</button>
+                </div>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:false,theme:'dark',themeVariables:{primaryColor:'#4f8ef7',primaryTextColor:'#fff',primaryBorderColor:'#4f8ef7',lineColor:'#a78bfa',secondaryColor:'#f59e0b',tertiaryColor:'#10b981'}});</script>
     <script src="data.js"></script>
+    <script src="search-data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

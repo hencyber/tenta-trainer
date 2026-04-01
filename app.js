@@ -423,4 +423,61 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         `;
     }
+
+    // Search functionality
+    window.performSearch = () => {
+        const input = document.getElementById('searchInput');
+        const resultsDiv = document.getElementById('searchResults');
+        const query = input.value.trim().toLowerCase();
+        
+        if (!query || query.length < 2) {
+            resultsDiv.innerHTML = '<div class="search-empty"><span class="empty-icon">🔍</span><p>Skriv minst 2 tecken för att söka</p></div>';
+            return;
+        }
+
+        if (typeof lectureData === 'undefined') {
+            resultsDiv.innerHTML = '<div class="search-empty"><span class="empty-icon">⚠️</span><p>Sökdata kunde inte laddas</p></div>';
+            return;
+        }
+
+        const matches = lectureData.filter(chunk => 
+            chunk.text.toLowerCase().includes(query)
+        );
+
+        if (matches.length === 0) {
+            resultsDiv.innerHTML = `<div class="search-empty"><span class="empty-icon">🤷</span><p>Inga träffar för "<strong>${query}</strong>"</p><p style="margin-top:8px;font-size:0.85rem;">Prova ett annat sökord</p></div>`;
+            return;
+        }
+
+        // Group by lecture
+        const grouped = {};
+        matches.forEach(m => {
+            if (!grouped[m.lecture]) grouped[m.lecture] = [];
+            grouped[m.lecture].push(m.text);
+        });
+
+        let html = `<div class="search-count">Hittade <strong>${matches.length}</strong> träffar i <strong>${Object.keys(grouped).length}</strong> föreläsningar för "<strong>${query}</strong>"</div>`;
+        
+        for (const [lecture, texts] of Object.entries(grouped)) {
+            texts.forEach(text => {
+                // Highlight matches
+                const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                const highlighted = text.replace(regex, '<mark>$1</mark>');
+                html += `<div class="search-result-card">
+                    <span class="search-result-lecture">${lecture}</span>
+                    <div class="search-result-text">${highlighted}</div>
+                </div>`;
+            });
+        }
+
+        resultsDiv.innerHTML = html;
+    };
+
+    // Enter key triggers search
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+    }
 });
